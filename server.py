@@ -9,11 +9,30 @@ myapi = Flask(__name__)
 
 @myapi.route('/', methods=['GET'])
 def hello_world():
-    message = 'Mi first API. Thanks Miguel Angel\nTest'
+    message = '''
+    Mi first API. Thanks Miguel Angel <br/> 
+    Directions: <br/> 
+    <br/> 
+    <b>Get Current Occupation</b> --> /occupation/id/[id]/time/[time] <br/> 
+    &nbsp &nbsp To get now ([time] == now) <br/>
+    <br/>
+    <b>Get all ids/</b> --> /get_ids <br/>
+    <br/>
+    <b>Get Place details</b> --> /get_place/id/[id] <br/>
+    &nbsp &nbsp TODO. Rating. --> I'm working on that... <br/>
+    <br/>
+    <br/>
+    id example --> ChIJk9s5DAQpQg0RGqVnRT1jGMc
+    <br/>
+    <br/>
+    Enjoy it &#128540
+    <br/>
+    What about my just learnend HTML?? &#128513
+    '''
     return message
 
 @myapi.route('/occupation/id/<id>/time/<time>', methods=['GET'])
-def getImage(id, time):
+def getOcc(id, time):
     """This function return the current capacity of a place
 
     Args:
@@ -34,14 +53,16 @@ def getImage(id, time):
 
     return str(req)
 
-@myapi.route('/place/get_ids', methods=['GET'])
+@myapi.route('/get_ids', methods=['GET'])
 def getIds():
     df = pd.read_csv('data/places_with_all.csv', index_col=0)
     return df.place_id.to_dict()
 
-@myapi.route('/place/get_place/id/<id>', methods=['GET'])
-def getPlaces(id):
+@myapi.route('/get_place/id/<id>', methods=['GET'])
+def getPlace(id):
     df = pd.read_csv('data/places_with_all.csv', index_col=0)
     df_dict = df.drop(columns=['lat', 'lng']).loc[df.place_id==id].to_dict('records')
     return json.dumps(df_dict, indent=4, sort_keys=False)
-    
+
+if __name__ == '__main__':
+    myapi.run()
