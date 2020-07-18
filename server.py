@@ -1,15 +1,16 @@
-from flask import Flask, Blueprint, jsonify
+from flask import Flask, jsonify
 import occupation_request
 from datetime import datetime
 import pandas as pd
 import json
 import os
-#os.chdir('D:\Estudio\WorkBenchs\My_projects\PopularTimes')
+
 myapi = Flask(__name__)
 
 @myapi.route('/', methods=['GET'])
 def hello_world():
-    return 'Mi first API. Thanks Miguel Angel'
+    message = 'Mi first API. Thanks Miguel Angel\nTest'
+    return 
 
 @myapi.route('/occupation/id/<id>/time/<time>', methods=['GET'])
 def getImage(id, time):
