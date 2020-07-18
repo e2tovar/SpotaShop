@@ -13,10 +13,10 @@ def hello_world():
     Mi first API. Thanks Miguel Angel <br/> 
     Directions: <br/> 
     <br/> 
+    <b>Get all ids/</b> --> /get_ids <br/>
+    <br/>
     <b>Get Current Occupation</b> --> /occupation/id/[id]/time/[time] <br/> 
     &nbsp &nbsp To get now ([time] == now) <br/>
-    <br/>
-    <b>Get all ids/</b> --> /get_ids <br/>
     <br/>
     <b>Get Place details</b> --> /get_place/id/[id] <br/>
     &nbsp &nbsp TODO. Rating. --> I'm working on that... <br/>
