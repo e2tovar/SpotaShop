@@ -10,7 +10,7 @@ myapi = Flask(__name__)
 @myapi.route('/', methods=['GET'])
 def hello_world():
     message = 'Mi first API. Thanks Miguel Angel\nTest'
-    return 
+    return message
 
 @myapi.route('/occupation/id/<id>/time/<time>', methods=['GET'])
 def getImage(id, time):
