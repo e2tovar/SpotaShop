@@ -4,10 +4,12 @@ from datetime import datetime
 import pandas as pd
 import json
 import os
+from flask_cors import CORS, cross_origin
 
 myapi = Flask(__name__)
 
 @myapi.route('/', methods=['GET'])
+@cross_origin()
 def hello_world():
     message = '''
     Mi first API. Thanks Miguel Angel <br/> 
@@ -32,6 +34,7 @@ def hello_world():
     return message
 
 @myapi.route('/occupation/id/<id>/time/<time>', methods=['GET'])
+@cross_origin()
 def getOcc(id, time):
     """This function return the current capacity of a place
 
@@ -54,13 +57,15 @@ def getOcc(id, time):
     return str(req)
 
 @myapi.route('/get_ids', methods=['GET'])
+@cross_origin()
 def getIds():
-    df = pd.read_csv('data/places_with_all.csv', index_col=0)
+    df = pd.read_json('data/Final.json')
     return df.place_id.to_dict()
 
 @myapi.route('/get_place/id/<id>', methods=['GET'])
+@cross_origin()
 def getPlace(id):
-    df = pd.read_csv('data/places_with_all.csv', index_col=0)
+    df = pd.read_json('data/Final.json')
     df_dict = df.drop(columns=['lat', 'lng']).loc[df.place_id==id].to_dict('records')
     return json.dumps(df_dict, indent=4, sort_keys=False)
 
