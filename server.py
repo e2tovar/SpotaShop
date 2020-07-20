@@ -12,7 +12,7 @@ myapi = Flask(__name__)
 @cross_origin()
 def hello_world():
     message = '''
-    Mi first API. Thanks Miguel Angel <br/> 
+    Mi first API. Thanks Miguel-Angel <br/> 
     Directions: <br/> 
     <br/> 
     <b>Get all ids/</b> --> /get_ids <br/>
