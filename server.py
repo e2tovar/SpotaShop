@@ -66,7 +66,7 @@ def getIds():
 @cross_origin()
 def getPlace(id):
     df = pd.read_json('data/Final.json')
-    df_dict = df.drop(columns=['lat', 'lng']).loc[df.place_id==id].to_dict('records')
+    df_dict = df.loc[df.place_id==id].to_dict('records')
     return json.dumps(df_dict, indent=4, sort_keys=False)
 
 if __name__ == '__main__':
